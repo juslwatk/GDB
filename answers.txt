@@ -1,0 +1,98 @@
+Software Engineering Toolkit: GDB
+Name: Justice Watkins
+Date: 3-24-2025
+
+PART A
+Questions
+
+1. What is the size in Bytes of the executable of factorial.cpp before and after debugging information is enabled? How about factorial_iterative.cpp?
+ Before using -g, the compiled factorial.cpp (and factorial_iterative.cpp) might be around 8-9 KB. After compiling with -g, it can grow to 20-30 KB or more
+ The exact numbers are system dependent, but you sould be able to increase the size when you enable debugging info.
+
+ime successfully in Emacs (command line mode) do you notice anything different from before?
+   Yes. Emacs integrates the GDB session with a source view and a command buffer in one interface. You can see the code alongside the GDB prompts, set breakpoints visually, and navigate without switching between separate windows.
+
+4. What is the difference between step and next in GDB?
+   - step (s) goes into a function call line-by-line, letting you debug inside the called function.
+      - next (n) executes the entire function call as one step and moves to the next line in the current function.
+
+5. How would you tell GDB to put a breakpoint at line 25 in file foo.cpp?
+   break foo.cpp:25
+
+6. How would you tell GDB to put a breakpoint at the function foo in the file bar.cpp?
+   break bar.cpp:foo
+
+7. How would you tell GDB to put a breakpoint at the method foo, belonging to the class bar, in the file baz.cpp?
+   break baz.cpp:bar::foo
+
+8. What does GDB load up at first in a multi-file program?
+   GDB starts with the main s symbol table (i.e., the main program), and loads in more details for other files and libraries as needed during debugging.
+
+9. How do you remove a breakpoint in GDB without exiting Emacs and reloading?
+   Use the delete command:
+        delete <breakpoint-number>
+	   or clear <location> if you want to remove all breakpoints at a certain location.
+
+
+PART B
+Please describe what the following terms and GDB commands mean:
+
+Terms
+1) breakpoint
+   - A marker that pauses execution at a specific line or function, allowing you to inspect variables and step through the code.
+
+2) GUD interaction buffer
+   - The Emacs buffer where you type GDB commands (like run, next, print) and see s responses.
+
+3) Primary source buffer
+   - Shows your source code in Emacs. When you hit a breakpoint, the current execution line is highlighted here.
+
+4) Stack buffer
+   - Displays the function call stack, showing which functions were called in what order and where the code is paused.
+
+5) Locals/Registers buffer
+   - Lists the local variables (and CPU registers if needed) in the current scope, updating as you step through the program.
+
+6) I/O buffer
+   - Captures the standard input/output of the program being debugged (like cin/cout or printf/scanf).
+
+7) Breakpoints/Threads buffer
+   - Shows all breakpoints ve set (and any threads in multi-threaded programs), including their file/line locations.
+
+
+Commands
+1) b = break
+   - Sets a breakpoint at a specified location (by function name or file:line).
+
+2) l = list
+   - Displays source code around the current execution point or a given location.
+
+3) c = continue
+   - Resumes program execution until the next breakpoint or program exit.
+
+4) k = kill
+   - Terminates the debugged process immediately, but keeps GDB running.
+
+5) bt = backtrace
+   - Shows the current call stack (the chain of function calls leading to this point).
+
+6) q = quit
+   - Exits GDB altogether.
+
+7) s 5 = step 5
+   - Executes five lines of code, stepping into function calls if they occur.
+
+8) whatis
+   - Displays the data type of a variable or expression.
+
+9) info
+   - Shows various pieces of information about the debugging session (e.g., info functions, info locals).
+
+10) info registers
+    - Prints the current values of CPU registers (low-level debugging info).
+
+11) p variable_name = print variable_name
+    - Prints the current value of a variable (and you can do expressions, too).
+
+12) i breakpoints = info breakpoints
+    - Lists all breakpoints, their numbers, locations, and states.~youGDBexecutable

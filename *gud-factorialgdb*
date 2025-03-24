@@ -1,0 +1,49 @@
+Current directory is ~/GDB/		;; This buffer is for text that is not saved, and for Lisp evaluation.
+GNU gdb (Ubuntu 9.2-0ubuntu1~20.04.2) 9.2;; To create a file, visit it with C-x C-f and enter text in its buffer.
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./factorial...
+(gdb) (gdb) break main
+Undefined command: "".  Try "help".
+(gdb) break main
+Breakpoint 1 at 0x11e9: file factorial.cpp, line 7.
+(gdb) run
+Starting program: /home/cs0/juslwatk/GDB/factorial 5
+
+Breakpoint 1, main (argc=0, argv=0x7fffffffe4a0) at factorial.cpp:7
+7	int main(int argc, char *argv[]) {
+(gdb) list
+2	#include <iostream>
+3	#include <cstdlib>
+4	using namespace std;
+5	/* Recursive Version */
+6	int factorial_recursive(int n);
+7	int main(int argc, char *argv[]) {
+8	if(argc > 1)
+9	cout << factorial_recursive(atol(argv[1])) << endl;
+10	else
+11	cout << "Factorial needs a parameter (n)." << endl;
+(gdb) (gdb) break main
+Undefined command: "".  Try "help".
+(gdb)   C-c C-cQuit
+break factorial.cpp:9
+Breakpoint 2 at 0x555555555202: file factorial.cpp, line 9.
+(gdb) step
+8	if(argc > 1)
+(gdb) next
+
+Breakpoint 2, main (argc=2, argv=0x7fffffffe4a8) at factorial.cpp:9
+9	cout << factorial_recursive(atol(argv[1])) << endl;
+(gdb) 
